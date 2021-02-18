@@ -7,12 +7,14 @@ import Date from "../components/date";
 import { GetStaticProps } from "next";
 import firebase from "firebase";
 import { getPosts } from "../firebase/dbFunctions";
-import { DB } from "../firebase/firebase";
+//import { DB } from "../firebase/firebase";
 import { useState } from "react";
 import { Post } from "../firebase/firebase";
 
-export default function Home(props: { posts: Post[] }) {
-  console.log(props.posts);
+export default function Home(props: { posts: string }) {
+  console.log(props);
+  const posts: Post[] = JSON.parse(props.posts);
+  console.log(posts);
   return (
     <Layout home>
       <Head>
@@ -36,12 +38,16 @@ export const getStaticProps: GetStaticProps = async () => {
   try {
     firebase.initializeApp(firebaseConfig);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 
   return {
     props: {
-      posts: getPosts,
+      posts: JSON.stringify(
+        await getPosts().then((res) => {
+          return res;
+        })
+      ),
     },
   };
 };
