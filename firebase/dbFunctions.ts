@@ -1,6 +1,6 @@
 // // firebaseの読み書きを行う関数を定義。
 import firebase from "firebase";
-import { Post } from "./firebase";
+import { Post, DB } from "./firebase";
 
 // 記事の一覧を渡す。Promiseオブジェクトなので、
 //   await getPosts().then((res) => {
@@ -9,7 +9,6 @@ import { Post } from "./firebase";
 //  みたいにして受け取る！！。
 // awaitつけないとgetStaticPropsで受け取れない。
 export const getPosts = async () => {
-  const DB = firebase.firestore();
   const data: Post[] = [];
   await DB.collection("posts")
     .get()
@@ -21,8 +20,8 @@ export const getPosts = async () => {
           body: post_data.body,
           createTime: post_data.createTime.toDate(),
           updateTime: post_data.updateTime.toDate(),
-          tag: post_data.tags,
-          category: post_data.categorys,
+          tag: post_data.tag,
+          category: post_data.category,
         };
         data.push(post_tmp);
       });
@@ -31,11 +30,22 @@ export const getPosts = async () => {
   return data;
 };
 
-// export const addPost = async(post: Post) => {
-//   const result: string = await DB.collection("post").add({
-//     ...post,
-//     createTime: firebase.firestore.Timestamp.fromDate(new Date()),
-//     updateTime: firebase.firestore.Timestamp.fromDate(new Date()),
-//     tag:
-//   })
-// }
+export const addPost = async (post: Post) => {
+  console.log("in add Post func !!");
+  const result: string = await DB.collection("posts")
+    .add({
+      ...post,
+      createTime: firebase.firestore.Timestamp.fromDate(new Date()),
+      updateTime: firebase.firestore.Timestamp.fromDate(new Date()),
+    })
+    .then(() => {
+      console.log("add post successflly");
+      return "add post successflly";
+    })
+    .catch(() => {
+      console.log("error has occured!!");
+      return "error has occured!!";
+    });
+
+  return result;
+};
