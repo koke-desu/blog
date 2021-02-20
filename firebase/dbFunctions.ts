@@ -1,6 +1,6 @@
 // // firebaseの読み書きを行う関数を定義。
 import firebase from "firebase";
-import { Post, DB } from "./firebase";
+import { Post } from "./firebase";
 
 // 記事の一覧を渡す。Promiseオブジェクトなので、
 //   await getPosts().then((res) => {
@@ -8,7 +8,7 @@ import { Post, DB } from "./firebase";
 //   })
 //  みたいにして受け取る！！。
 // awaitつけないとgetStaticPropsで受け取れない。
-export const getPosts = async () => {
+export const getPosts = async (DB: firebase.firestore.Firestore) => {
   const data: Post[] = [];
   await DB.collection("posts")
     .get()
@@ -30,8 +30,7 @@ export const getPosts = async () => {
   return data;
 };
 
-export const addPost = async (post: Post) => {
-  console.log("in add Post func !!");
+export const addPost = async (DB: firebase.firestore.Firestore, post: Post) => {
   const result: string = await DB.collection("posts")
     .add({
       ...post,
@@ -39,11 +38,9 @@ export const addPost = async (post: Post) => {
       updateTime: firebase.firestore.Timestamp.fromDate(new Date()),
     })
     .then(() => {
-      console.log("add post successflly");
       return "add post successflly";
     })
     .catch(() => {
-      console.log("error has occured!!");
       return "error has occured!!";
     });
 
