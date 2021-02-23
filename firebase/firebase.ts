@@ -6,6 +6,7 @@ import firebase from "firebase";
 // tag, categoryは現在stringの配列として管理している。名前以外の情報を管理するようになったら、
 // firebaseの方で参照型か、オブジェクト型にする。
 export type Post = {
+  id: string;
   title: string;
   body: string;
   category: string[];

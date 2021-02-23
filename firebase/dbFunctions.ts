@@ -18,6 +18,7 @@ export const getPosts = async (DB: FirebaseFirestore.Firestore) => {
       posts.forEach((post) => {
         const post_data = post.data();
         const post_tmp: Post = {
+          id: post.id,
           title: post_data.title,
           body: post_data.body,
           createTime: post_data.createTime.toDate(),
