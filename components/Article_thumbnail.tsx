@@ -4,10 +4,13 @@ import { Post } from "../firebase/firebase";
 import { useState } from "react";
 import Image from "next/image";
 
-const url = "http://localhost:3000/api/";
+const url = "http://localhost:3000/api/image/";
 
 export default function Article(props: { post: Post }) {
+  // サムネイルの画像のpathを保持するstate。
+  // サムネイルが設定されていない場合、public/images/no_image.pngを表示。
   const [img_url, set_img_url] = useState("/images/no_image.png");
+  // api/image/[path]より画像を受け取る。
   fetch(url + props.post.id + "/thumbnail").then((res) => {
     res.json().then((json) => {
       if (json.url != "image not found") {
