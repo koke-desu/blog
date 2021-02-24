@@ -56,9 +56,23 @@ export const getImage = async (
   Storage: admin.storage.Storage,
   path: string
 ) => {
-  const img_url = await Storage.bucket(process.env.FIREBASE_STORAGE_BUCKET)
-    .file(path)
-    .getSignedUrl({ action: "read", expires: "12-31-2121" });
-  console.log(img_url);
+  const file = await Storage.bucket(process.env.FIREBASE_STORAGE_BUCKET).file(
+    path
+  );
+
+  // 存在しないファイルが返された場合、public/images/no_image.pngへのパスを返す。
+  if (
+    !file.exists((err, exists) => {
+      return exists;
+    })
+  ) {
+    return "/images/no_image.png";
+  }
+
+  const img_url = await file.getSignedUrl({
+    action: "read",
+    expires: "12-31-2121",
+  });
+  //console.log(img_url);
   return img_url.toString();
 };
