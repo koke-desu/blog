@@ -6,9 +6,9 @@ import Article from "./Article_thumbnail";
 
 export default function ArticleList(props: { posts: Post[] }) {
   return (
-    <div>
+    <div className="flex p-2 flex-wrap justify-around">
       {props.posts.map((post) => {
-        return <Article post={post} />;
+        return <Article post={post} key={post.id} />;
       })}
     </div>
   );

@@ -14,7 +14,7 @@ export const siteTitle = "Next.js Sample Website";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="p-4">
+    <div className="bg-gray-100">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -31,9 +31,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Header />
-      <div className="container flex justify-around">
-        <section className="w-3/5 bg-gray-100">{children}</section>
-        <section className="w-1/3 bg-gray-100">
+      <div className="flex justify-around container mx-auto flex-wrap xl:max-w-screen-xl">
+        <p className="w-full">パンくずリスト</p>
+        <section className="w-8/12">{children}</section>
+        <section className="w-3/12">
           <SideBar />
         </section>
       </div>
