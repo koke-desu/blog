@@ -1,8 +1,8 @@
 // firebaseの読み書きを行う関数を定義。
 // すべてサーバーサイドで呼び出すこと！
 import firebase from "firebase";
-import { Post } from "./firebase";
-import admin from "firebase-admin";
+import { Post, Category } from "./firebase";
+import admin from "./firebase_init";
 
 // 記事の一覧を渡す。Promiseオブジェクトなので、
 //   await getPosts().then((res) => {
@@ -10,8 +10,10 @@ import admin from "firebase-admin";
 //   })
 //  みたいにして受け取る！！。
 // awaitつけないとgetStaticPropsで受け取れない。
-export const getPosts = async (DB: FirebaseFirestore.Firestore) => {
+export const getPosts = async () => {
+  const DB = admin.firestore();
   const data: Post[] = [];
+
   await DB.collection("posts")
     .get()
     .then((posts) => {
@@ -32,7 +34,7 @@ export const getPosts = async (DB: FirebaseFirestore.Firestore) => {
   return data;
 };
 
-//
+// admin側で使う関数。
 export const addPost = async (DB: FirebaseFirestore.Firestore, post: Post) => {
   const result: string = await DB.collection("posts")
     .add({
@@ -50,12 +52,11 @@ export const addPost = async (DB: FirebaseFirestore.Firestore, post: Post) => {
   return result;
 };
 
-// pathにはFirebase Storageのルートからのpathを渡す。(例: "posts/1/image.png")
+// Firebase Storageから画像のパスを獲得する関数。
 // 返されたURLをImageのsrcに設定すると画像を表示。
-export const getImage = async (
-  Storage: admin.storage.Storage,
-  path: string
-) => {
+// pathにはFirebase Storageのルートからのpathを渡す。(例: "posts/1/image.png")
+export const getImage = async (path: string) => {
+  const Storage = admin.storage();
   const file = await Storage.bucket(process.env.FIREBASE_STORAGE_BUCKET).file(
     path
   );
@@ -75,4 +76,9 @@ export const getImage = async (
   });
   //console.log(img_url);
   return img_url.toString();
+};
+
+//
+export const getCategorys = async (DB: FirebaseFirestore.Firestore) => {
+  //const data: Category[] =
 };
