@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Children } from "react";
+import CategoryView from "./CategoryView";
+import TagView from "./TagView";
 
 export default function Header() {
   return (
@@ -37,7 +39,7 @@ export default function Header() {
                 カテゴリー
               </h2>
             </div>
-            <p></p>
+            <CategoryView />
           </div>
         </Link>
       </section>
@@ -50,7 +52,7 @@ export default function Header() {
                 タグ
               </h2>
             </div>
-            <p></p>
+            <TagView />
           </div>
         </Link>
       </section>
