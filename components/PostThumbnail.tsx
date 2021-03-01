@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const url = "http://localhost:3000/api/image/";
 
-export default function Article({ post }: { post: Post }) {
+export default function PostThumbnail({ post }: { post: Post }) {
   // サムネイルの画像のpathを保持するstate。
   // サムネイルが設定されていない場合、public/images/no_image.pngを表示。
   const [img_url, set_img_url] = useState("/images/no_image.png");
@@ -21,7 +21,7 @@ export default function Article({ post }: { post: Post }) {
   });
 
   return (
-    <Link href={"/posts/" + post.id}>
+    <Link href={"/posts/" + post.id} key={post.id}>
       <div className="w-5/12 relative bg-main2 text-white border border-gray-400 m-0 shadow-md">
         <Image src={img_url} width={480} height={270} />
         <Link href="/">
