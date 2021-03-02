@@ -5,16 +5,51 @@ import firebase from "firebase";
 import { Post, Category, Tag, Tags } from "./firebase";
 import admin from "./firebase_init";
 
+// 1つのページに表示する記事の数。
+// これを使ってページング。
+export const page_posts = 2;
+
 // 記事の一覧を渡す。
 // クエリ処理を引数で指定することが出来る。クエリの指定方法はwhere()と同じく、
 // (対象の属性, 演算子, 値)の形式。 参照(https://firebase.google.com/docs/firestore/query-data/queries?authuser=0)
 // 引数を指定しない場合はすべての投稿を返す。
-export const getAllPosts = async (atr = "title", ope = "!=", val: any = "") => {
+// 第4引数でページングする。存在しないページを開いた場合は404投げたい。
+// ページを設定しない場合は、クエリに当てはまるすべてのデータを渡す。
+export const getAllPosts = async (
+  atr = "createTime",
+  ope = "!=",
+  val: any = "",
+  page = 0
+) => {
   const DB = admin.firestore();
   const data: Post[] = [];
 
-  await DB.collection("posts")
-    .where(atr, ope, val)
+  let ref;
+
+  if (page == 0) {
+    ref = await DB.collection("posts")
+      .where(atr, ope, val)
+      .orderBy("createTime", "desc");
+  } else if (page == 1) {
+    ref = await DB.collection("posts")
+      .where(atr, ope, val)
+      .orderBy("createTime", "desc")
+      .limit(page_posts);
+  } else {
+    const snapshot = await DB.collection("posts")
+      .orderBy("createTime", "desc")
+      .where(atr, ope, val)
+      .limit(page_posts * (page - 1))
+      .get();
+
+    ref = await DB.collection("posts")
+      .where(atr, ope, val)
+      .orderBy("createTime", "desc")
+      .startAfter(snapshot.docs[snapshot.docs.length - 1].data().createTime)
+      .limit(page_posts);
+  }
+
+  await ref
     .get()
     .then((posts) => {
       posts.forEach((post) => {
@@ -30,6 +65,9 @@ export const getAllPosts = async (atr = "title", ope = "!=", val: any = "") => {
         };
         data.push(post_tmp);
       });
+    })
+    .catch((err) => {
+      console.log(err);
     });
   return data;
 };
