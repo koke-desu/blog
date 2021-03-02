@@ -6,11 +6,15 @@ import { Post, Category, Tag, Tags } from "./firebase";
 import admin from "./firebase_init";
 
 // 記事の一覧を渡す。
-export const getAllPosts = async () => {
+// クエリ処理を引数で指定することが出来る。クエリの指定方法はwhere()と同じく、
+// (対象の属性, 演算子, 値)の形式。 参照(https://firebase.google.com/docs/firestore/query-data/queries?authuser=0)
+// 引数を指定しない場合はすべての投稿を返す。
+export const getAllPosts = async (atr = "title", ope = "!=", val: any = "") => {
   const DB = admin.firestore();
   const data: Post[] = [];
 
   await DB.collection("posts")
+    .where(atr, ope, val)
     .get()
     .then((posts) => {
       posts.forEach((post) => {
