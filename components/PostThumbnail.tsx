@@ -21,7 +21,7 @@ export default function PostThumbnail({ post }: { post: Post }) {
   });
 
   return (
-    <Link href={"/posts/" + post.id} key={post.id}>
+    <Link href={"/posts/" + post.id}>
       <div className="w-5/12 relative bg-main2 text-white border border-gray-400 m-0 shadow-md">
         <Image src={img_url} width={480} height={270} />
         <Link href="/">
@@ -40,7 +40,7 @@ export default function PostThumbnail({ post }: { post: Post }) {
             />
             {post.tag.map((tag) => {
               return (
-                <Link href="/">
+                <Link href="/" key={tag}>
                   <p className="p-0.5 ml-1 cursor-pointer">{tag}</p>
                 </Link>
               );
