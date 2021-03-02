@@ -1,5 +1,6 @@
 import { Category } from "../firebase/firebase";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function CategoryView() {
   // categoryを保持するState。
@@ -13,10 +14,15 @@ export default function CategoryView() {
       });
     });
   }, []);
+
   return (
     <ul>
       {categories.map((category) => {
-        return <li key={category.id}>{category.name}</li>;
+        return (
+          <li key={category.id}>
+            <Link href={"/categories/" + category.id}>{category.name}</Link>{" "}
+          </li>
+        );
       })}
     </ul>
   );

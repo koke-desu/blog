@@ -1,5 +1,6 @@
 import { Tag, Tags } from "../firebase/firebase";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function TagView() {
   // tagを保持するState。
@@ -22,7 +23,11 @@ export default function TagView() {
             <p>{tags.name}</p>
             <ul>
               {tags.children.map((tag) => {
-                return <li key={tag.id}>{tag.name}</li>;
+                return (
+                  <li key={tag.id}>
+                    <Link href={"/tags/" + tag.id}>{tag.name}</Link>
+                  </li>
+                );
               })}
             </ul>
           </div>
