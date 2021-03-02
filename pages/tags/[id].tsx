@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       tag: params.id,
       posts: JSON.stringify(
-        await getAllPosts("tag", "array-contains-any", [params.id])
+        await getAllPosts("tag", "array-contains-any", [params.id], 1)
       ),
     },
   };

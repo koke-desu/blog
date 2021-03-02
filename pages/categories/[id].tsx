@@ -33,7 +33,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       category: params.id,
-      posts: JSON.stringify(await getAllPosts("category", "==", params.id)),
+      posts: JSON.stringify(await getAllPosts("category", "==", params.id, 1)),
     },
   };
 };
