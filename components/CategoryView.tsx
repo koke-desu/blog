@@ -19,8 +19,8 @@ export default function CategoryView() {
     <ul>
       {categories.map((category) => {
         return (
-          <li key={category.id}>
-            <Link href={"/categories/" + category.id}>{category.name}</Link>{" "}
+          <li key={category.id} className="text-left p-1 pl-5">
+            <Link href={"/categories/" + category.id}>{category.name}</Link>
           </li>
         );
       })}

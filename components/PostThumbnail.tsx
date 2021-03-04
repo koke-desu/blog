@@ -22,7 +22,7 @@ export default function PostThumbnail({ post }: { post: Post }) {
 
   return (
     <Link href={"/posts/" + post.id}>
-      <div className="w-5/12 relative bg-main2 text-white border border-gray-400 m-0 shadow-md">
+      <div className="w-5/12 relative bg-main2 text-white border border-gray-400 shadow-md my-5 mx-8">
         <Image src={img_url} width={480} height={270} />
         <Link href="/">
           <p className="absolute top-1 left-2 py-0.5 px-2 rounded-full bg-accent cursor-pointer text-sm text-black">

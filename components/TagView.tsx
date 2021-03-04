@@ -20,11 +20,11 @@ export default function TagView() {
       {tags.map((tags) => {
         return (
           <div key={tags.id}>
-            <p>{tags.name}</p>
-            <ul>
+            <p className="text-left font-bold p-1 ml-5">{tags.name}</p>
+            <ul className=" list-disc text-left ml-10">
               {tags.children.map((tag) => {
                 return (
-                  <li key={tag.id}>
+                  <li key={tag.id} className="">
                     <Link href={"/tags/" + tag.id}>{tag.name}</Link>
                   </li>
                 );

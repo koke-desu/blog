@@ -6,7 +6,7 @@ import PostThumbnail from "./PostThumbnail";
 
 export default function PostList(props: { posts: Post[] }) {
   return (
-    <div className="flex p-2 flex-wrap justify-around">
+    <div className="flex p-2 flex-wrap justify-start ">
       {props.posts.map((post) => {
         return <PostThumbnail post={post} key={post.id} />;
       })}
