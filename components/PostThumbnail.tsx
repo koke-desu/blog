@@ -22,61 +22,71 @@ export default function PostThumbnail({ post }: { post: Post }) {
 
   return (
     <Link href={"/posts/" + post.id}>
-      <div className="w-5/12 relative bg-main2 text-white border border-gray-400 shadow-md my-5 mx-8">
-        <Image src={img_url} width={480} height={270} />
-        <Link href="/">
-          <p className="absolute top-1 left-2 py-0.5 px-2 rounded-full bg-accent cursor-pointer text-sm text-black">
-            {post.category}
-          </p>
-        </Link>
-        <p className="p-1 text-xl">{"　" + post.title}</p>
-        <div className="flex justify-between">
-          <div className="flex">
-            <Image
-              src="/images/tag_icon.png"
-              width={25}
-              height={12}
-              className=""
-            />
-            {post.tag.map((tag) => {
-              return (
-                <Link href="/" key={tag}>
-                  <p className="p-0.5 ml-1 cursor-pointer">{tag}</p>
-                </Link>
-              );
-            })}
+      <div className="w-full sm:w-6/12 my-5 mx-0 px-5">
+        <div className="relative box-border text-white border-2 border-gray-400 shadow-md bg-main2">
+          <Image src={img_url} width={480} height={270} />
+          <Link href="/">
+            <p className="absolute top-1 left-2 py-0.5 px-2 rounded-full bg-accent cursor-pointer text-sm text-black">
+              {post.category}
+            </p>
+          </Link>
+          <p className="p-1 text-xl">{"　" + post.title}</p>
+          <div className="flex justify-between">
+            <div className="flex">
+              <Image
+                src="/images/tag_icon.png"
+                width={25}
+                height={12}
+                className=""
+              />
+              {post.tag.map((tag) => {
+                return (
+                  <Link href="/" key={tag}>
+                    <p className="p-0.5 ml-1 cursor-pointer">{tag}</p>
+                  </Link>
+                );
+              })}
+            </div>
+            {(() => {
+              const update = new Date(post.updateTime);
+              const create = new Date(post.createTime);
+              if (update.toString() != create.toString()) {
+                return (
+                  <div className="flex text-right pr-1">
+                    <Image
+                      src="/images/update_icon.png"
+                      width={20}
+                      height={12}
+                    />
+                    <p>
+                      {update.getFullYear() +
+                        "/" +
+                        (update.getMonth() + 1) +
+                        "/" +
+                        update.getDate()}
+                    </p>
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="flex justify-end pr-1">
+                    <Image
+                      src="/images/create_icon.png"
+                      width={25}
+                      height={15}
+                    />
+                    <p>
+                      {update.getFullYear() +
+                        "/" +
+                        (update.getMonth() + 1) +
+                        "/" +
+                        update.getDate()}
+                    </p>
+                  </div>
+                );
+              }
+            })()}
           </div>
-          {(() => {
-            const update = new Date(post.updateTime);
-            const create = new Date(post.createTime);
-            if (update.toString() != create.toString()) {
-              return (
-                <div className="flex text-right pr-1">
-                  <Image src="/images/update_icon.png" width={20} height={12} />
-                  <p>
-                    {update.getFullYear() +
-                      "/" +
-                      (update.getMonth() + 1) +
-                      "/" +
-                      update.getDate()}
-                  </p>
-                </div>
-              );
-            } else {
-              return (
-                <div className="flex justify-end pr-1">
-                  <Image src="/images/create_icon.png" width={25} height={15} />
-                  <p>
-                    {update.getFullYear() +
-                      "/" +
-                      (update.getMonth() + 1) +
-                      "/" +
-                      update.getDate()}
-                  </p>
-                </div>
-              );
-            }
-          })()}
         </div>
       </div>
     </Link>

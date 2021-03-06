@@ -30,9 +30,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Head>
       <Header />
       <div className="flex justify-around container mx-auto flex-wrap xl:max-w-screen-xl">
-        <p className="w-full">パンくずリスト</p>
-        <section className="w-8/12">{children}</section>
-        <section className="w-3/12">
+        <section className="w-5/6 lg:w-8/12">{children}</section>
+        <section className="w-5/6 lg:w-3/12">
           <SideBar />
         </section>
       </div>
