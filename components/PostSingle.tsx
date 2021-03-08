@@ -3,8 +3,11 @@ import Image from "next/image";
 import { Post } from "../firebase/firebase";
 import ReactMarkdown from "react-markdown/with-html";
 import gfm from "remark-gfm";
-import "github-markdown-css";
 import { useState } from "react";
+// githubのmdと同様なcss
+import "github-markdown-css";
+// markdownの表示のカスタマイズ。
+import style from "./css/markdown_style.module.css";
 
 const url = "http://localhost:3000/api/image/";
 
@@ -20,7 +23,7 @@ export default function PostSingle({ post }: { post: Post }) {
   });
 
   return (
-    <div className="markdown-body p-6 bg-white mt-5">
+    <div className={style.markdown_body + " markdown-body p-6 bg-white mt-5"}>
       <div>
         <Image src={img_url} height={100} width={100} />
         <h1>{post.title}</h1>
