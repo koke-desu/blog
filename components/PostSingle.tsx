@@ -18,6 +18,7 @@ export default function PostSingle({ post }: { post: Post }) {
       }
     });
   });
+
   return (
     <div className="markdown-body p-6 bg-white mt-5">
       <div>
@@ -35,7 +36,8 @@ export default function PostSingle({ post }: { post: Post }) {
         })}
       </div>
       <ReactMarkdown plugins={[[gfm]]} allowDangerousHtml>
-        {post.body}
+        {/* サーバー側で、"\\n"にエスケープされた改行を"/n"にする。 */}
+        {post.body.replaceAll("\\n", "\n")}
       </ReactMarkdown>
     </div>
   );
