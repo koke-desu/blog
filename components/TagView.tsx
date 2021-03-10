@@ -7,9 +7,8 @@ export default function TagView() {
   const [tags, setTags] = useState<Tags[]>([]);
   // api/tag/よりtagsを受け取る。
   useEffect(() => {
-    fetch("http://localhost:3000/api/tag").then((res) => {
+    fetch("/api/tag").then((res) => {
       res.json().then((json) => {
-        console.log(json.tags);
         setTags(json.tags);
       });
     });

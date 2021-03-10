@@ -9,7 +9,7 @@ import "github-markdown-css";
 // markdownの表示のカスタマイズ。
 import style from "./css/markdown_style.module.css";
 
-const url = "http://localhost:3000/api/image/";
+const url = "/api/image/";
 
 export default function PostSingle({ post }: { post: Post }) {
   const [img_url, set_img_url] = useState("/images/no_image.png");

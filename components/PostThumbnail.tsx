@@ -5,7 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const url = "http://localhost:3000/api/image/";
+const url = "/api/image/";
 
 export default function PostThumbnail({ post }: { post: Post }) {
   // サムネイルの画像のpathを保持するstate。

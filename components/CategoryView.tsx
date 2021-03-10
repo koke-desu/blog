@@ -7,9 +7,8 @@ export default function CategoryView() {
   const [categories, setCategories] = useState<Category[]>([]);
   // api/category/よりcategoryを受け取る。
   useEffect(() => {
-    fetch("http://localhost:3000/api/category").then((res) => {
+    fetch("/api/category").then((res) => {
       res.json().then((json) => {
-        console.log(json.categories);
         setCategories(json.categories);
       });
     });
