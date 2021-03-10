@@ -40,7 +40,7 @@ export default function PostSingle({ post }: { post: Post }) {
       </div>
       <ReactMarkdown plugins={[[gfm]]} allowDangerousHtml>
         {/* サーバー側で、"\\n"にエスケープされた改行を"/n"にする。 */}
-        {post.body.replaceAll("\\n", "\n")}
+        {post.body}
       </ReactMarkdown>
     </div>
   );
