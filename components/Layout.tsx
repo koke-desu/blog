@@ -6,11 +6,20 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "./Header";
 import SideBar from "./SideBar";
+import { Category, Tags } from "../firebase/firebase";
 
 const name = "[Your Name]";
 export const siteTitle = "Next.js Sample Website";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({
+  children,
+  categories,
+  tags,
+}: {
+  children: React.ReactNode;
+  categories: Category[];
+  tags: Tags[];
+}) {
   return (
     <div className="bg-gray-100">
       <Head>
@@ -32,7 +41,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="flex justify-around container mx-auto flex-wrap xl:max-w-screen-xl">
         <section className="w-5/6 lg:w-8/12">{children}</section>
         <section className="w-5/6 lg:w-3/12">
-          <SideBar />
+          <SideBar categories={categories} tags={tags} />
         </section>
       </div>
     </div>

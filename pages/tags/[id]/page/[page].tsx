@@ -6,14 +6,17 @@ import {
   getAllPosts,
   page_posts,
   getTags,
+  getCategories,
 } from "../../../../firebase/dbFunctions";
-import { Post } from "../../../../firebase/firebase";
+import { Post, Category, Tags } from "../../../../firebase/firebase";
 
 export default function Home(props) {
   const posts: Post[] = JSON.parse(props.posts);
+  const categories: Category[] = JSON.parse(props.categories);
+  const tags: Tags[] = JSON.parse(props.tags);
 
   return (
-    <Layout>
+    <Layout categories={categories} tags={tags}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -46,6 +49,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       posts: JSON.stringify(
         await getAllPosts("tag", "==", params.id, Number(params.page))
       ),
+      categories: JSON.stringify(await getCategories()),
+      tags: JSON.stringify(await getTags()),
     },
   };
 };
