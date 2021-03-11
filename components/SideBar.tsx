@@ -4,8 +4,6 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Children } from "react";
-import CategoryView from "./CategoryView";
-import TagView from "./TagView";
 import { Category, Tags } from "../firebase/firebase";
 
 export default function SideBar({
