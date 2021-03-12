@@ -28,12 +28,14 @@ export default function PostSingle({ post }: { post: Post }) {
         <Image src={img_url} height={100} width={100} />
         <h1>{post.title}</h1>
       </div>
-      <div className="flex">
-        <Image src="/images/tag_icon.png" width={25} height={12} className="" />
-        {post.tag.map((tag) => {
+      <div className="flex h-8">
+        <Image src="/images/tag_icon.png" width={25} height={26} className="" />
+        {post.tag.map((tag, index) => {
           return (
             <Link href="/">
-              <p className="p-0.5 ml-1 cursor-pointer">{tag}</p>
+              <p className="p-0.5 ml-1 cursor-pointer self-auto text-lg">
+                {index > 0 ? ", " + tag : tag}
+              </p>
             </Link>
           );
         })}
