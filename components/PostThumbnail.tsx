@@ -12,13 +12,20 @@ export default function PostThumbnail({ post }: { post: Post }) {
   // サムネイルが設定されていない場合、public/images/no_image.pngを表示。
   const [img_url, set_img_url] = useState("/images/no_image.png");
   // api/image/[path]より画像を受け取る。
-  fetch(url + post.id + "/thumbnail").then((res) => {
-    res.json().then((json) => {
-      if (json.url != "image not found") {
-        set_img_url(json.url);
-      }
-    });
-  });
+  fetch(url + post.id + "/thumbnail")
+    .then((res) => {
+      res
+        .json()
+        .then((json) => {
+          if (json.url != "image not found") {
+            set_img_url(json.url);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    })
+    .catch((error) => {});
 
   return (
     <Link href={"/posts/" + post.id}>
@@ -45,45 +52,47 @@ export default function PostThumbnail({ post }: { post: Post }) {
                 );
               })}
             </div>
-            {(() => {
-              const update = new Date(post.updateTime);
-              const create = new Date(post.createTime);
-              if (update.toString() != create.toString()) {
-                return (
-                  <div className="flex text-right pr-1">
-                    <Image
-                      src="/images/update_icon.png"
-                      width={20}
-                      height={12}
-                    />
-                    <p>
-                      {update.getFullYear() +
-                        "/" +
-                        (update.getMonth() + 1) +
-                        "/" +
-                        update.getDate()}
-                    </p>
-                  </div>
-                );
-              } else {
-                return (
-                  <div className="flex justify-end pr-1">
-                    <Image
-                      src="/images/create_icon.png"
-                      width={25}
-                      height={15}
-                    />
-                    <p>
-                      {update.getFullYear() +
-                        "/" +
-                        (update.getMonth() + 1) +
-                        "/" +
-                        update.getDate()}
-                    </p>
-                  </div>
-                );
-              }
-            })()}
+            <div className="absolute top-1 right-2 py-0.5 px-2 rounded-full bg-gray-400 text-xs flex text-right pr-1">
+              {(() => {
+                const update = new Date(post.updateTime);
+                const create = new Date(post.createTime);
+                if (update.toString() != create.toString()) {
+                  return (
+                    <>
+                      <Image
+                        src="/images/update_icon.png"
+                        width={20}
+                        height={16}
+                      />
+                      <p>
+                        {update.getFullYear() +
+                          "/" +
+                          (update.getMonth() + 1) +
+                          "/" +
+                          update.getDate()}
+                      </p>
+                    </>
+                  );
+                } else {
+                  return (
+                    <>
+                      <Image
+                        src="/images/create_icon.png"
+                        width={20}
+                        height={16}
+                      />
+                      <p>
+                        {update.getFullYear() +
+                          "/" +
+                          (update.getMonth() + 1) +
+                          "/" +
+                          update.getDate()}
+                      </p>
+                    </>
+                  );
+                }
+              })()}
+            </div>
           </div>
         </div>
       </div>
