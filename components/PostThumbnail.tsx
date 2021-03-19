@@ -5,7 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const url = "http://localhost:3000/api/image/";
+const url = "/api/image/";
 
 export default function PostThumbnail({ post }: { post: Post }) {
   // サムネイルの画像のpathを保持するstate。
@@ -31,18 +31,16 @@ export default function PostThumbnail({ post }: { post: Post }) {
             </p>
           </Link>
           <p className="p-1 text-xl">{"　" + post.title}</p>
-          <div className="flex justify-between">
-            <div className="flex">
-              <Image
-                src="/images/tag_icon.png"
-                width={25}
-                height={12}
-                className=""
-              />
-              {post.tag.map((tag) => {
+          <div className="flex justify-between p-1">
+            <div className="flex h-5">
+              <Image src="/images/tag_icon.png" width={20} height={12} />
+              {post.tag.map((tag, index) => {
                 return (
                   <Link href="/" key={tag}>
-                    <p className="p-0.5 ml-1 cursor-pointer">{tag}</p>
+                    <p className="px-1 ml-1 cursor-pointer">
+                      {" "}
+                      {index > 0 ? ", " + tag : tag}
+                    </p>
                   </Link>
                 );
               })}

@@ -4,10 +4,15 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Children } from "react";
-import CategoryView from "./CategoryView";
-import TagView from "./TagView";
+import { Category, Tags } from "../firebase/firebase";
 
-export default function Header() {
+export default function SideBar({
+  categories,
+  tags,
+}: {
+  categories: Category[];
+  tags: Tags[];
+}) {
   return (
     <div className="">
       <section className="mt-10 bg-white shadow-md">
@@ -39,7 +44,17 @@ export default function Header() {
                 カテゴリー
               </h2>
             </div>
-            <CategoryView />
+            <ul>
+              {categories.map((category) => {
+                return (
+                  <li key={category.id} className="text-left p-1 pl-5">
+                    <Link href={"/categories/" + category.id}>
+                      {category.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </Link>
       </section>
@@ -52,7 +67,24 @@ export default function Header() {
                 タグ
               </h2>
             </div>
-            <TagView />
+            <div>
+              {tags.map((tags) => {
+                return (
+                  <div key={tags.id}>
+                    <p className="text-left font-bold p-1 ml-5">{tags.name}</p>
+                    <ul className=" list-disc text-left ml-10">
+                      {tags.children.map((tag) => {
+                        return (
+                          <li key={tag.id} className="">
+                            <Link href={"/tags/" + tag.id}>{tag.name}</Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </Link>
       </section>

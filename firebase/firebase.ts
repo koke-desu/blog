@@ -4,8 +4,7 @@ import firebase from "firebase";
 // ここから型の定義。
 // Firebaseの方でフィールド追加したら、こちらも変更すべし。
 
-// tag, categoryは現在stringの配列として管理している。名前以外の情報を管理するようになったら、
-// firebaseの方で参照型か、オブジェクト型にする。
+// tagは現在stringの配列として管理している。名前以外の情報を管理するようになったら、firebaseの方で参照型か、オブジェクト型にする。
 
 // 記事一覧のpathは　page/1　みたいに管理。
 // それぞれの記事のpathは posts/[id] で管理。
@@ -17,6 +16,7 @@ export type Post = {
   tag: string[];
   createTime?: Date;
   updateTime?: Date;
+  public: boolean;
 };
 
 // idはルーティングに使う。そのため英語で、"/"などの記号を使わないものにする。(日本語でルーティングしてあるとコレジャナイ感すごい)

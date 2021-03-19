@@ -13,7 +13,6 @@ export default async (req, res) => {
         return res;
       })
       .catch((err) => {
-        console.log("image get err.\n" + err);
         return "image not found";
       }),
   });
