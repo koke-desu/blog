@@ -71,7 +71,7 @@ export default function PostSingle({ post }: { post: Post }) {
           );
         })}
       </div>
-      <div className="w-full h-96 relative">
+      <div className="w-full h-52 md:h-96 lg:my-10 relative">
         <Image src={post.thumbnail} layout="fill" className="object-contain" />
       </div>
       <article className={`mt-10 markdown-body ${style.markdown_body}`}>
