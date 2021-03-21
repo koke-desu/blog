@@ -17,6 +17,7 @@ export type Post = {
   createTime?: Date;
   updateTime?: Date;
   public: boolean;
+  thumbnail: string;
 };
 
 // idはルーティングに使う。そのため英語で、"/"などの記号を使わないものにする。(日本語でルーティングしてあるとコレジャナイ感すごい)

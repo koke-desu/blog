@@ -63,6 +63,9 @@ export const getAllPosts = async (
           tag: post_data.tag,
           category: post_data.category,
           public: post_data.public,
+          thumbnail: post_data.thumbnail
+            ? post_data.thumbnail
+            : "/images/no_image.png",
         };
         data.push(post_tmp);
       });
@@ -93,6 +96,9 @@ export const getPost = async (id: string) => {
     tag: post_data.tag,
     category: post_data.category,
     public: post_data.public,
+    thumbnail: post_data.thumbnail
+      ? post_data.thumbnail
+      : "/images/no_image.png",
   };
 
   return post;
@@ -121,9 +127,11 @@ export const addPost = async (DB: FirebaseFirestore.Firestore, post: Post) => {
 // pathにはFirebase Storageのルートからのpathを渡す。(例: "posts/1/image.png")
 export const getImage = async (path: string) => {
   const Storage = admin.storage();
-  const file = await Storage.bucket(process.env.FIREBASE_STORAGE_BUCKET).file(
-    path
-  );
+  const file = await Storage.bucket(process.env.FIREBASE_STORAGE_BUCKET)
+    .file(path)
+    .catch((error) => {
+      return "/images/no_image.png";
+    });
 
   // 存在しないファイルが返された場合、public/images/no_image.pngへのパスを返す。
   if (

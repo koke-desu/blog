@@ -19,17 +19,20 @@ export default function SideBar({
         <Link href="/">
           <div className="text-center">
             <div className="bg-main2 flex p-2">
-              <Image src="/images/profile_icon.png" width="40" height="30" />
-              <h2 className="text-white text-xl inline-block self-center">
+              <Image src="/images/profile_icon.png" width="30" height="25" />
+              <h2 className="text-white text-xl inline-block self-center ml-2">
                 プロフィール
               </h2>
             </div>
-            <Image
-              src="/images/profile.png"
-              width="100"
-              height="100"
-              className="justify-self-center"
-            />
+            <div className="relative overflow-hidden rounded-full w-24 h-24 mx-auto my-2">
+              <Image
+                src="/images/profile.jpg"
+                width="100"
+                height="100"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              />
+            </div>
+
             <p className="text-lg mb-1">koke</p>
             <p>webフロントエンドを勉強中の人。</p>
           </div>
@@ -40,7 +43,7 @@ export default function SideBar({
           <div className="text-center">
             <div className="bg-main2 flex p-2">
               <Image src="/images/category_icon.png" width="30" height="25" />
-              <h2 className="text-white text-xl inline-block self-center">
+              <h2 className="text-white text-xl inline-block self-center ml-2">
                 カテゴリー
               </h2>
             </div>
@@ -63,7 +66,7 @@ export default function SideBar({
           <div className="text-center">
             <div className="bg-main2 flex p-2">
               <Image src="/images/tag_icon.png" width="30" height="25" />
-              <h2 className="text-white text-xl inline-block self-center">
+              <h2 className="text-white text-xl inline-block self-center ml-2">
                 タグ
               </h2>
             </div>
