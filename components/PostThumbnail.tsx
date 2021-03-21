@@ -8,30 +8,11 @@ import Link from "next/link";
 const url = "/api/image/";
 
 export default function PostThumbnail({ post }: { post: Post }) {
-  // サムネイルの画像のpathを保持するstate。
-  // サムネイルが設定されていない場合、public/images/no_image.pngを表示。
-  const [img_url, set_img_url] = useState("/images/no_image.png");
-  // api/image/[path]より画像を受け取る。
-  fetch(url + post.id + "/thumbnail")
-    .then((res) => {
-      res
-        .json()
-        .then((json) => {
-          if (json.url != "image not found") {
-            set_img_url(json.url);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    })
-    .catch((error) => {});
-
   return (
     <Link href={"/posts/" + post.id}>
       <div className="w-full sm:w-6/12 my-5 mx-0 px-5">
         <div className="relative box-border text-white border-2 border-gray-400 shadow-md bg-main2">
-          <Image src={img_url} width={480} height={270} />
+          <Image src={post.thumbnail} width={480} height={270} />
           <Link href="/">
             <p className="absolute top-1 left-2 py-0.5 px-2 rounded-full bg-accent cursor-pointer text-sm text-black">
               {post.category}
