@@ -15,7 +15,7 @@ export default function PostThumbnail({ post }: { post: Post }) {
           <Image src={post.thumbnail} width={480} height={270} />
           <Link href="/">
             <p className="absolute top-1 left-2 py-0.5 px-2 rounded-full bg-accent cursor-pointer text-sm text-black">
-              {post.category}
+              {post.category.name}
             </p>
           </Link>
           <p className="p-1 text-xl">{"　" + post.title}</p>

@@ -38,7 +38,7 @@ export type Post = {
   id: string;
   title: string;
   body: string;
-  category: string;
+  category: Category;
   tag: Tag[];
   createTime?: Date;
   updateTime?: Date;

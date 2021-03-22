@@ -34,6 +34,21 @@ const getTagsById = async (ids: string[]) => {
   return tags_result;
 };
 
+// idを指定して、カテゴリーを獲得。
+const getCategoryById = async (id: string) => {
+  const DB: FirebaseFirestore.Firestore = admin.firestore();
+  const categories = await DB.collection("categories").get();
+  for (let category of categories.docs) {
+    if (category.id == id)
+      return {
+        id: category.id,
+        name: category.data().name,
+      };
+  }
+
+  return { id: id, name: id };
+};
+
 // idを指定して一つ記事を獲得。
 export const getPost = async (id: string) => {
   const DB = admin.firestore();
@@ -53,7 +68,7 @@ export const getPost = async (id: string) => {
     createTime: post_data.createTime.toDate(),
     updateTime: post_data.updateTime.toDate(),
     tag: await getTagsById(post_data.tag),
-    category: post_data.category,
+    category: await getCategoryById(post_data.category),
     public: post_data.public,
     thumbnail: post_data.thumbnail
       ? post_data.thumbnail
@@ -124,7 +139,7 @@ export const getAllPosts = async (
       createTime: post_data.createTime.toDate(),
       updateTime: post_data.updateTime.toDate(),
       tag: await getTagsById(post_data.tag),
-      category: post_data.category,
+      category: await getCategoryById(post_data.category),
       public: post_data.public,
       thumbnail: post_data.thumbnail
         ? post_data.thumbnail
