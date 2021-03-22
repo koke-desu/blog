@@ -17,6 +17,10 @@ export default function Home(props) {
     <Layout categories={categories} tags={tags}>
       <Head>
         <title>{siteTitle}</title>
+        <meta
+          name="google-site-verification"
+          content="YteHlbLEMvDB88lu-zroFNwNz_MuM5YByZyFMxI_yFc"
+        />
       </Head>
       <PostList posts={posts} />
     </Layout>
