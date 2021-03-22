@@ -15,7 +15,7 @@ export default function SideBar({
 }) {
   return (
     <div className="">
-      <section className="mt-10 bg-white shadow-md">
+      <div className="mt-10 bg-white shadow-md">
         <Link href="/">
           <div className="text-center">
             <div className="bg-main2 flex p-2">
@@ -37,8 +37,8 @@ export default function SideBar({
             <p>webフロントエンドを勉強中の人。</p>
           </div>
         </Link>
-      </section>
-      <section className="mt-10 bg-white shadow-md">
+      </div>
+      <div className="mt-10 bg-white shadow-md">
         <Link href="/">
           <div className="text-center">
             <div className="bg-main2 flex p-2">
@@ -60,8 +60,8 @@ export default function SideBar({
             </ul>
           </div>
         </Link>
-      </section>
-      <section className="mt-10 bg-white shadow-md">
+      </div>
+      <div className="mt-10 bg-white shadow-md">
         <Link href="/">
           <div className="text-center">
             <div className="bg-main2 flex p-2">
@@ -90,8 +90,8 @@ export default function SideBar({
             </div>
           </div>
         </Link>
-      </section>
-      <section className="mt-10 bg-white shadow-md">
+      </div>
+      <div className="mt-10 bg-white shadow-md">
         <Link href="/">
           <div className="">
             <div className="bg-main2 flex p-2">
@@ -103,7 +103,7 @@ export default function SideBar({
             </p>
           </div>
         </Link>
-      </section>
+      </div>
     </div>
   );
 }

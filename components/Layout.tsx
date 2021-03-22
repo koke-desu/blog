@@ -39,10 +39,10 @@ export default function Layout({
       </Head>
       <Header />
       <div className="flex justify-around container mx-auto flex-wrap xl:max-w-screen-xl">
-        <section className="w-5/6 lg:w-8/12">{children}</section>
-        <section className="w-5/6 lg:w-3/12">
+        <div className="w-5/6 lg:w-8/12">{children}</div>
+        <div className="w-5/6 lg:w-3/12">
           <SideBar categories={categories} tags={tags} />
-        </section>
+        </div>
       </div>
     </div>
   );
