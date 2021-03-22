@@ -24,10 +24,10 @@ export default function PostThumbnail({ post }: { post: Post }) {
               <Image src="/images/tag_icon.png" width={20} height={12} />
               {post.tag.map((tag, index) => {
                 return (
-                  <Link href="/" key={tag}>
+                  <Link href="/" key={tag.id}>
                     <p className="px-1 ml-1 cursor-pointer">
                       {" "}
-                      {index > 0 ? ", " + tag : tag}
+                      {index > 0 ? ", " + tag.name : tag.name}
                     </p>
                   </Link>
                 );
