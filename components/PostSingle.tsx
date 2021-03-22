@@ -63,7 +63,7 @@ export default function PostSingle({ post }: { post: Post }) {
         />
         {post.tag.map((tag, index) => {
           return (
-            <Link href="/" key={`tag_${tag.id}`}>
+            <Link href={``} key={`tag_${tag.id}`}>
               <p className="px-1 ml-1 cursor-pointer self-auto text-lg border-b-2 border-white hover:border-gray-400 hover:text-gray-400">
                 {index > 0 ? ", " + tag.name : tag.name}
               </p>

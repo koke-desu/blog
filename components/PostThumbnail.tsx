@@ -9,11 +9,11 @@ const url = "/api/image/";
 
 export default function PostThumbnail({ post }: { post: Post }) {
   return (
-    <Link href={"/posts/" + post.id}>
+    <Link href={`/posts/${post.id}`} key={`post_${post.id}`}>
       <div className="w-full sm:w-6/12 my-5 mx-0 px-5">
         <div className="relative box-border text-white border-2 border-gray-400 shadow-md bg-main2">
           <Image src={post.thumbnail} width={480} height={270} />
-          <Link href="/">
+          <Link href={`/category/${post.category.name}`}>
             <p className="absolute top-1 left-2 py-0.5 px-2 rounded-full bg-accent cursor-pointer text-sm text-black">
               {post.category.name}
             </p>
@@ -24,7 +24,7 @@ export default function PostThumbnail({ post }: { post: Post }) {
               <Image src="/images/tag_icon.png" width={20} height={12} />
               {post.tag.map((tag, index) => {
                 return (
-                  <Link href="/" key={tag.id}>
+                  <Link href={`/tag/${tag.id}`} key={`${post.id}_${tag.id}`}>
                     <p className="px-1 ml-1 cursor-pointer">
                       {" "}
                       {index > 0 ? ", " + tag.name : tag.name}
