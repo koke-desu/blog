@@ -74,12 +74,12 @@ export default function PostSingle({ post }: { post: Post }) {
       <div className="w-full h-52 md:h-96 lg:my-10 relative">
         <Image src={post.thumbnail} layout="fill" className="object-contain" />
       </div>
-      <article className={`mt-10 markdown-body ${style.markdown_body}`}>
+      <div className={`mt-10 markdown-body ${style.markdown_body}`}>
         <ReactMarkdown plugins={[[gfm]]} allowDangerousHtml>
           {/* サーバー側で、"\\n"にエスケープされた改行を"/n"にする。 */}
           {post.body}
         </ReactMarkdown>
-      </article>
+      </div>
     </div>
   );
 }
