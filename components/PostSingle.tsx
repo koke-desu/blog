@@ -7,7 +7,7 @@ import { useState } from "react";
 // githubのmdと同様なcss
 import "github-markdown-css";
 // markdownの表示のカスタマイズ。
-import style from "./css/markdown_style.module.css";
+import MDstyle from "./css/markdown_style.module.css";
 
 export default function PostSingle({ post }: { post: Post }) {
   return (
@@ -74,11 +74,25 @@ export default function PostSingle({ post }: { post: Post }) {
       <div className="w-full h-52 md:h-96 lg:my-10 relative">
         <Image src={post.thumbnail} layout="fill" className="object-contain" />
       </div>
-      <div className={`mt-10 markdown-body ${style.markdown_body}`}>
+      <div className={`mt-16 markdown-body ${MDstyle.markdown_body}`}>
         <ReactMarkdown plugins={[[gfm]]} allowDangerousHtml>
           {/* サーバー側で、"\\n"にエスケープされた改行を"/n"にする。 */}
           {post.body}
         </ReactMarkdown>
+      </div>
+      <div className="mt-10">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          className="twitter-share-button"
+          data-show-count="false"
+        >
+          Tweet
+        </a>
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charSet="utf-8"
+        ></script>
       </div>
     </div>
   );
