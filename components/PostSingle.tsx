@@ -95,7 +95,7 @@ export default function PostSingle({ post }: { post: Post }) {
         style={{ backgroundColor: "#1DA1F2" }}
       >
         <a
-          href={`https://twitter.com/share?url=${site_url}posts/${post.id}`}
+          href={`https://twitter.com/share?url=${site_url}/posts/${post.id}`}
           rel="nofollow"
           className="p-1 pl-1.5 self-center flex justify-center items-center"
         >
