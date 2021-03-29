@@ -11,7 +11,7 @@ import "github-markdown-css";
 // markdownの表示のカスタマイズ。
 import MDstyle from "./css/markdown_style.module.css";
 
-const site_url = "https://blog-koke-desu.vercel.app";
+const site_url = "https://koke-tech-blog.vercel.app";
 
 export default function PostSingle({ post }: { post: Post }) {
   const router = useRouter();
