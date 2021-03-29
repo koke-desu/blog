@@ -17,54 +17,53 @@ export default function PostSingle({ post }: { post: Post }) {
   const router = useRouter();
 
   return (
-    <div className={`mt-10 p-10 bg-white relative`}>
+    <div className={`my-10 p-10 bg-white relative`}>
       <Head>
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.body} />
         <meta name="twitter:image" content={post.thumbnail} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <div className="flex items-center justify-between">
-        <h1 className="my-5 font-bold text-4xl">{post.title}</h1>
-        <div className="flex  pr-1 items-center">
-          {(() => {
-            const update = new Date(post.updateTime);
-            const create = new Date(post.createTime);
-            if (update.toString() != create.toString()) {
-              return (
-                <>
-                  <Image
-                    src="/images/update_icon.png"
-                    width={20}
-                    height={20}
-                    layout="fixed"
-                  />
-                  <p className="text-base ml-1">
-                    {update.getFullYear() +
-                      "/" +
-                      (update.getMonth() + 1) +
-                      "/" +
-                      update.getDate()}
-                  </p>
-                </>
-              );
-            } else {
-              return (
-                <>
-                  <Image src="/images/create_icon.png" width={20} height={16} />
-                  <p>
-                    {update.getFullYear() +
-                      "/" +
-                      (update.getMonth() + 1) +
-                      "/" +
-                      update.getDate()}
-                  </p>
-                </>
-              );
-            }
-          })()}
-        </div>
+      <div className="flex  pr-1 items-center absolute right-5">
+        {(() => {
+          const update = new Date(post.updateTime);
+          const create = new Date(post.createTime);
+          if (update.toString() != create.toString()) {
+            return (
+              <>
+                <Image
+                  src="/images/update_icon.png"
+                  width={20}
+                  height={20}
+                  layout="fixed"
+                />
+                <p className="text-base ml-1">
+                  {update.getFullYear() +
+                    "/" +
+                    (update.getMonth() + 1) +
+                    "/" +
+                    update.getDate()}
+                </p>
+              </>
+            );
+          } else {
+            return (
+              <>
+                <Image src="/images/create_icon.png" width={20} height={16} />
+                <p>
+                  {update.getFullYear() +
+                    "/" +
+                    (update.getMonth() + 1) +
+                    "/" +
+                    update.getDate()}
+                </p>
+              </>
+            );
+          }
+        })()}
       </div>
+      <h1 className="my-5 font-bold text-4xl">{post.title}</h1>
+      <div className="flex items-center justify-between"></div>
 
       <div className="flex h-8 items-center">
         <Image
@@ -92,7 +91,7 @@ export default function PostSingle({ post }: { post: Post }) {
         </ReactMarkdown>
       </div>
       <div
-        className="w-16 h-8 rounded-md flex"
+        className="w-16 h-8 rounded-md flex mt-20"
         style={{ backgroundColor: "#1DA1F2" }}
       >
         <a

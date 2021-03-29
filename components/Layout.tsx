@@ -31,7 +31,7 @@ export default function Layout({
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Header />
-      <div className="flex justify-around container mx-auto flex-wrap xl:max-w-screen-xl">
+      <div className="flex justify-around container mx-auto flex-wrap xl:max-w-screen-xl pb-10">
         <div className="w-5/6 lg:w-8/12">{children}</div>
         <div className="w-5/6 lg:w-3/12">
           <SideBar categories={categories} tags={tags} />
