@@ -17,7 +17,7 @@ export default function PostSingle({ post }: { post: Post }) {
   const router = useRouter();
 
   return (
-    <div className={`my-10 p-10 bg-white relative`}>
+    <div className={`my-10 p-10 bg-white relative shadow-md`}>
       <Head>
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.body} />
@@ -34,7 +34,7 @@ export default function PostSingle({ post }: { post: Post }) {
                 <Image
                   src="/images/update_icon.png"
                   width={20}
-                  height={20}
+                  height={16}
                   layout="fixed"
                 />
                 <p className="text-base ml-1">
@@ -69,7 +69,7 @@ export default function PostSingle({ post }: { post: Post }) {
         <Image
           src="/images/tag_icon.png"
           width={20}
-          height={20}
+          height={16}
           layout="fixed"
         />
         {post.tag.map((tag, index) => {
@@ -91,7 +91,7 @@ export default function PostSingle({ post }: { post: Post }) {
         </ReactMarkdown>
       </div>
       <div
-        className="w-16 h-8 rounded-md flex mt-20"
+        className="w-20 sm:w-16 h-8 rounded-md flex mt-20"
         style={{ backgroundColor: "#1DA1F2" }}
       >
         <a
