@@ -20,7 +20,7 @@ export default function SideBar({
           <div className="text-center">
             <div className="bg-main2 flex p-2">
               <Image src="/images/profile_icon.png" width="30" height="25" />
-              <h2 className="text-white text-xl inline-block self-center ml-2">
+              <h2 className="text-white text-lg font-bold inline-block self-center ml-2">
                 プロフィール
               </h2>
             </div>
@@ -34,7 +34,7 @@ export default function SideBar({
             </div>
 
             <p className="text-lg mb-1">koke</p>
-            <p>webフロントエンドを勉強中の人。</p>
+            <p className="text-base">webフロントエンドを勉強中の人。</p>
           </div>
         </Link>
       </div>
@@ -43,14 +43,17 @@ export default function SideBar({
           <div className="text-center">
             <div className="bg-main2 flex p-2">
               <Image src="/images/category_icon.png" width="30" height="25" />
-              <h2 className="text-white text-xl inline-block self-center ml-2">
+              <h2 className="text-white text-lg font-bold inline-block self-center ml-2">
                 カテゴリー
               </h2>
             </div>
             <ul>
               {categories.map((category) => {
                 return (
-                  <li key={category.id} className="text-left p-1 pl-5">
+                  <li
+                    key={category.id}
+                    className="text-left text-base p-1 pl-5"
+                  >
                     <Link href={"/categories/" + category.id}>
                       {category.name}
                     </Link>
@@ -66,7 +69,7 @@ export default function SideBar({
           <div className="text-center">
             <div className="bg-main2 flex p-2">
               <Image src="/images/tag_icon.png" width="30" height="25" />
-              <h2 className="text-white text-xl inline-block self-center ml-2">
+              <h2 className="text-white text-lg font-bold inline-block self-center ml-2">
                 タグ
               </h2>
             </div>
@@ -74,8 +77,10 @@ export default function SideBar({
               {tags.map((tags) => {
                 return (
                   <div key={tags.id}>
-                    <p className="text-left font-bold p-1 ml-5">{tags.name}</p>
-                    <ul className=" list-disc text-left ml-10">
+                    <p className="text-left text-lg font-bold p-1 ml-5">
+                      {tags.name}
+                    </p>
+                    <ul className="text-base text-left ml-10">
                       {tags.children.map((tag) => {
                         return (
                           <li key={tag.id} className="">
@@ -95,9 +100,11 @@ export default function SideBar({
         <Link href="/">
           <div className="">
             <div className="bg-main2 flex p-2">
-              <h2 className="text-white text-xl ml-5">このブログについて</h2>
+              <h2 className="text-white text-lg font-bold ml-5">
+                このブログについて
+              </h2>
             </div>
-            <p className="p-2">
+            <p className="p-2 text-base">
               {"　"}
               Next.jsとFirebaseを使って自作したブログです。管理者の技術力の向上とともにブログも改良していくつもりです。
             </p>
