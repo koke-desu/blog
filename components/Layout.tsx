@@ -24,10 +24,6 @@ export default function Layout({
     <div className="bg-gray-100">
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Learn how to build a personal website using Next.js"
-        />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Header />

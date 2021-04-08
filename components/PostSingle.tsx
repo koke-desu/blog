@@ -20,7 +20,7 @@ export default function PostSingle({ post }: { post: Post }) {
     <div className={`my-10 p-10 bg-white relative shadow-md`}>
       <Head>
         <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={post.body} />
+        <meta name="twitter:description" content={post.body.slice(0, 30)} />
         <meta name="twitter:image" content={post.thumbnail} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
