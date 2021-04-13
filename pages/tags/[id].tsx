@@ -11,7 +11,6 @@ import { Post, Tag, Category, Tags } from "../../firebase/firebase";
 
 export default function PostView(props) {
   const posts = JSON.parse(props.posts);
-  console.log(posts);
   const categories: Category[] = JSON.parse(props.categories);
   const tags: Tags[] = JSON.parse(props.tags);
 
