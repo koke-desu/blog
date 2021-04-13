@@ -32,7 +32,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllPosts();
   const arr = [];
   for (let i = 1; i <= Math.ceil(posts.length / page_posts); i++) arr.push(i);
-  console.log(arr);
   const paths = arr.map((id) => {
     return { params: { page: id.toString() } };
   });
