@@ -16,7 +16,7 @@ export default function Home(props) {
   return (
     <Layout categories={categories} tags={tags}>
       <Head>
-        <title>{siteTitle}</title>
+        <title>koke-TechBlog</title>
         <meta
           name="google-site-verification"
           content="YteHlbLEMvDB88lu-zroFNwNz_MuM5YByZyFMxI_yFc"
