@@ -1,6 +1,11 @@
 import { GetServerSidePropsContext } from "next";
 import { getAllPosts } from "../firebase/dbFunctions";
 
+// xの先頭に0を必要数挿入しn桁の文字列にする。
+const zeros = (x: number, n: number): string => {
+  return x.toString().padStart(n, "0");
+};
+
 async function generateSitemapXml() {
   let xml = `<?xml version="1.0" encoding="UTF-8"?>`;
   xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
@@ -12,9 +17,10 @@ async function generateSitemapXml() {
       xml += `
       <url>
         <loc>https://koke-tech-blog.vercel.app/posts/${post.id}</loc>
-        <lastmod>${post.updateTime.getFullYear()}-${
-        post.updateTime.getMonth() + 1
-      }-${post.updateTime.getDate()}</lastmod>
+        <lastmod>${post.updateTime.getFullYear()}-${zeros(
+        post.updateTime.getMonth() + 1,
+        2
+      )}-${zeros(post.updateTime.getDate(), 2)}</lastmod>
       </url>
     `;
     }
